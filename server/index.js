@@ -12,7 +12,7 @@ app.use(bodyParser.text({type: 'text/plain'}))
 
 
 app.get('/sn', (req, res) => {
-    res.send(Array.from(sn));
+    res.send(Array.from(sn).join('\n'));
 })
 
 app.post('/sn', (req, res) => {

@@ -1,5 +1,7 @@
-const express = require('express')
-bodyParser = require('body-parser')
+const express = require('express');
+bodyParser = require('body-parser');
+snBase = require('./sn_db_controller');
+
 const PORT = 8080;
 let sn;
 sn = new Set()
@@ -9,6 +11,8 @@ app.use(express.urlencoded({ extended: true, }));
 app.use(bodyParser.text({type: 'text/plain'}))
   
 //app.use(express.json());
+snBase.deleteTable();
+snBase.createTable('sn');
 
 
 app.get('/sn', (req, res) => {
@@ -21,6 +25,7 @@ app.post('/sn', (req, res) => {
         return res.sendStatus(400);
     }
     receivedData = req.body;
+    snBase.addSN(req.body);
     sn.add(req.body) 
     res.sendStatus(200);
 })
@@ -29,4 +34,5 @@ app.post('/sn', (req, res) => {
 app.listen(PORT, () => {
     console.log(`Server started at port ${PORT}`);
 })
+
 

@@ -3,8 +3,6 @@ bodyParser = require('body-parser');
 snBase = require('./sn_db_controller');
 
 const PORT = 8080;
-let sn;
-sn = new Set()
 
 const app = express();
 app.use(express.urlencoded({ extended: true, }));
@@ -26,7 +24,6 @@ app.post('/sn', (req, res) => {
     }
     receivedData = req.body;
     snBase.addSN(req.body);
-    sn.add(req.body) 
     res.sendStatus(200);
 })
 

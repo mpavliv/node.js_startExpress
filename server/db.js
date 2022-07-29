@@ -6,7 +6,9 @@ async function read(){
     if (arr) return arr;
 }
 
+read().then((res) => {
+    console.log(res);
+    return res
+})
 
-console.log(read().then((res, rej) => {
-    return res;
-}));
+
